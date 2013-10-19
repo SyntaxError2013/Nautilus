@@ -2,6 +2,7 @@
 require 'Toro.php';
 require 'google-api-php-client/src/Google_Client.php';
 require 'google-api-php-client/src/contrib/Google_PlusService.php';
+require 'vendor/facebook/facebook.php';
 
 $client = new Google_Client();
 $client->setApplicationName("Rekishi: Year One");
@@ -11,11 +12,34 @@ $client->setRedirectUri('http://localhost:8080/login/google/cb');
 $client->setDeveloperKey('AIzaSyAbLfaJIOSWDGGSGX3W3RG4JbOJpbWTyAA');
 $plus = new Google_PlusService($client);
 
+$facebook = new Facebook(array(
+  'appId'  => '275332542591675',
+  'secret' => '8fb18f042a8494e15eb35aba98a42c41',
+));
+$user = $facebook->getUser();
+
+
 class FacebookHandler {
     function get() {
-        render('facebook.php');
+        global $user;
+        global $facebook;
+        if(!$user){
+            header("Location: /login/facebook");
+        }
+        else{
+        require 'lib/facebook.php';
+        }
     }
 }
+
+class FbLoginHandler {
+    function get() {
+        global $facebook;
+        $loginUrl = $facebook->getLoginUrl( array('scope' => 'email,user_photos,friends_photos,read_stream','redirect_uri'=>'http://'.$_SERVER["HTTP_HOST"].'/facebook' ));
+        header("Location: ".$loginUrl);
+    }
+}
+
 
 class GoogleHandler {
     function get() {
@@ -39,5 +63,6 @@ class GoogleCBHandler {
 Toro::serve(array(
     "/facebook" => "FacebookHandler",
     "/login/google" => "GoogleHandler",
-    "/login/google/cb" => "GoogleCBHandler"
+    "/login/google/cb" => "GoogleCBHandler",
+    "/login/facebook" => "FbLoginHandler"
 ));

@@ -1,6 +1,6 @@
 <?php
  require 'Toro.php';
-
+ require 'lib/facebook.php';
 
 class HelloHandler {
     function get() {
@@ -10,7 +10,7 @@ class HelloHandler {
 
 class FacebookHandler {
     function get() {
-        render('facebook.php');
+        Facebook();
     }
 }
 

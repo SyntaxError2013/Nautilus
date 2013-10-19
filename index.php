@@ -8,6 +8,13 @@ class HelloHandler {
     }
 }
 
+class FacebookHandler {
+    function get() {
+        
+    }
+}
+
 Toro::serve(array(
     "/" => "HelloHandler",
+    "/facebook" => "FacebookHandler" 
 ));

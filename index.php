@@ -10,7 +10,7 @@ class HelloHandler {
 
 class FacebookHandler {
     function get() {
-        
+        render('facebook.php');
     }
 }
 

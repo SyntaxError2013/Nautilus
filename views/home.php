@@ -15,7 +15,7 @@
 		<h2>Google+ Posts</h2>
 		<!--This div will be filled with g+ posts-->
 		<div id="google">
-			<img src="/images/loader.gif" id="loader">
+			<img src="/images/loader.gif">
 		</div>
 		<h2>Github Activity</h2>
 		<!--This div will be filled with github cards-->
@@ -24,7 +24,7 @@
 		</div>
 		<h2>Facebook Posts</h2>
 		<div id="fb">
-			<img src="/images/loader.gif" id="loader">
+			<img src="/images/loader.gif">
 		</div>
 		
 		<hr>

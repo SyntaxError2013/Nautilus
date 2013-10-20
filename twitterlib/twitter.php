@@ -126,40 +126,55 @@ class Twitter{
 			// print_r($content);
 			$content = array();
 
-			$year = 2013;
-			$month = 10;
-			$day = 13;
-
-			$id = '390770141392162800';
+			$req_date = date('Y-m-d', strtotime('Mar 24 2010'));
 
 			$found = 0;
 
-			// $data = $connection->get('statuses/user_timeline', array('count' => '2', 'trim_user' => '1'));
-			// foreach($data as $tweet){
-			// 	$date = date_parse(date( 'Y-m-d H:i:s', strtotime($tweet->created_at)));
-			// 	echo $tweet->created_at . " : "; 
-			// 	print_r($date);
-			// 	echo "<br>";
-			// 	// array_push($content, $date);
-			// }
+			$i = 0;
 
-			// while(!$found){
-			// 	$data = $connection->get('statuses/user_timeline', array('count' => '2', 'max_id' => $id, 'trim_user' => '1'));
-			// 	foreach($data as $tweet){
-			// 		// array_push($content, $tweet);
-			// 		$date = date_parse(date( 'Y-m-d H:i:s', strtotime($tweet->created_at)));
-			// 		if($date['year'] == $year && $date['month'] == $month && $date['day'] == $day){
-			// 			array_push($content, $tweet);
-			// 		}
-			// 		else if($date['year'] == $year && $date['month'] == $month && $date['day'] < $day){
-			// 			$found = 1;
-			// 			break;
-			// 		}
-			// 		$id = $tweet->id + 1;
-			// 	}
-			// }
+			while(!$found){
+				if($i == 6) break;
 
-			$content = $connection->get('statuses/user_timeline', array('count' => '10', 'trim_user' => '1'));
+				if($i == 0){
+					$data = $connection->get('statuses/user_timeline', array('count' => '200', 'trim_user' => '1'));
+				}
+				else {
+					$data = $connection->get('statuses/user_timeline', array('count' => '200', 'max_id' => $id, 'trim_user' => '1'));
+				}
+				$i++;
+
+				// $content = $data[count((array)$data)-1];
+				
+				$last = $data[count((array)$data)-1];
+				$last_date = date( 'Y-m-d', strtotime($last->created_at));
+				if($req_date < $last_date){
+					$id = $last->id + 1;
+					continue;
+				}
+				else {
+					foreach($data as $tweet){
+						$date = date( 'Y-m-d', strtotime($tweet->created_at));
+						if($date == $req_date){
+							array_push($content, $tweet);
+						}
+						else if($date < $req_date){
+							$found = 1;
+							break;
+						}
+						// $id = $tweet->id + 1;
+					}
+				}
+			}
+
+			include(ROOT.'/views/html.inc');
+
+			if($connection->http_code == 200){
+				include(ROOT.'/views/html.inc');
+			}
+			else {
+				echo json_encode($content->errors);
+				// include(ROOT.'/views/html.inc');
+			}
 
 			/* Some example calls */
 			//$connection->get('users/show', array('screen_name' => 'abraham'));
@@ -169,7 +184,6 @@ class Twitter{
 			//$connection->post('friendships/destroy', array('id' => 9436992));
 
 			/* Include HTML to display on the page */
-			include(ROOT.'/views/html.inc');
 		}
 	}
 }

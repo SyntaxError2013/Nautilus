@@ -20,6 +20,7 @@ body {
 	margin: 0 auto 2em;
 	padding: 2em 1em;
 	width: 600px;
+	font-family: 'Lato', serif;
 }
 body .zocial {
 	margin: 8px 4px;
@@ -34,4 +35,47 @@ h2 {
 footer{
 	position:absolute;
 	bottom:0px;
+}
+
+.label {
+	height: 5px;
+	width: 25%;
+	float: left;
+}
+
+.label.link{
+	background: #f39c12;
+}
+.label.photo{
+	background: #9b59b6;
+}
+.label.status{
+	background: #1abc9c;
+}
+.label.post{
+	background: #c0392b;
+}
+
+.chart {
+	text-align: center;
+	padding-bottom: 50px;
+}
+
+.names {
+	margin-top: 25px;
+}
+
+.fbpost {
+	padding: 10px 0px 10px 10px;
+	border-left: 4px solid #3B5998;
+	margin: 10px 0px;
+	background: #f7f7f7;
+}
+
+.fblink {
+	float: right;
+}
+
+.fbImg {
+	float: left;
 }

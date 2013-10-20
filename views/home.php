@@ -9,6 +9,7 @@
     	<link href='http://fonts.googleapis.com/css?family=Pompiere' rel='stylesheet' type='text/css'>
     	<link href="/css/style.css" type="text/stylesheet" rel="stylesheet">
 		<title>Rekishi - Travel in Time</title>
+		<link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
 	</head>
 	<body>
 		<h1><a href="/">Rekishi</a> - Travel in Time</h1>
@@ -22,7 +23,25 @@
 		<div id="github">
 			<img src="/images/loader.gif" id="loader">
 		</div>
+
 		<h2>Facebook Posts</h2>
+		<div class="chart">
+			<div class="fbImg"></div>
+			<h2>Likes</h2>
+			<canvas id="fbLikes" width="300" height="300"></canvas>
+			<div class="names">
+				<div class="link label"></div>
+				<div class="photo label"></div>
+				<div class="status label"></div>
+				<div class="post label"></div>
+			</div>
+			<div>
+				<div class="label linksval"></div>
+				<div class="label photosval">Photos</div>
+				<div class="label statusval">Statuses</div>
+				<div class="label postsval">Posts</div>
+			</div>
+		</div>
 		<div id="fb">
 			<img src="/images/loader.gif">
 		</div>
@@ -30,9 +49,10 @@
 		<div id="twitter">
 		</div>
 
-		<script src="/js/google.js"></script>
-		<script src="/js/github.js"></script>
 		<script src="/js/fb.js"></script>
+		<script src="/js/chart.js"></script>
+		<script src="/js/github.js"></script>
+		<script src="/js/google.js"></script>
 		<script src="/js/twitter.js"></script>
 	</body>
 </html>

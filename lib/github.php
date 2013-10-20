@@ -15,6 +15,7 @@ if(isset($LastyearRandomday))array_push($arr, $LastyearRandomday);
  	$commit = $html->find('div[id=issues-contributed]', 0);
  	if($commit){
 	  $commit = $commit->find('a', 0);
+ 	  if($commit){
  	  $value2["link"] = "https://github.com".$commit->href;
  	  $value2["text"] = $commit->plaintext;
 
@@ -23,7 +24,7 @@ if(isset($LastyearRandomday))array_push($arr, $LastyearRandomday);
  	  $repo = substr( $nousername, 0 , strpos($nousername , '/') );
  	  $value2["repo"] = $repo;
  	  $value2["username"] = $username;
-
+ 	}
 	}
  	$value2["date"] = $value[0];
  	$value2["contributions"] = $value[1];

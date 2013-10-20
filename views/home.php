@@ -8,6 +8,7 @@
 		<title>Rekishi - Travel in Time</title>
 	</head>
 	<body>
+		<h2>Google + Posts</h2>
 		<!--This div will be filled with g+ posts-->
 		<div id="google">
 		</div>

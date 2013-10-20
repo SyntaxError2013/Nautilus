@@ -52,22 +52,7 @@ class FbLoginHandler {
 }
 
 class GPlusHandler 
-{    function get(){
-    	global $client, $oauth_client, $plus;
-        if(isset($_SESSION['token'])){
-            $client->setAccessToken($_SESSION['token']);
-            $list = $plus->activities->listActivities('me','public', array("maxResults"=>100));
-            foreach($list['items'] as $post){
-            	$date = $post['published'];
-            	if(substr($date,5,5)==date("m")."-".date("d")){
-            		echo "<div><p>".$post['object']['content']."</p><br>".$date."<br></div>";
-            	}
-            }
-        }
-        else{
-            echo "No session token";
-        }
-    }
+{
     function get_xhr(){
         global $client, $oauth_client, $plus;
         if(isset($_SESSION['token'])){

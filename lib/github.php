@@ -3,11 +3,11 @@
  $contributions = json_decode(file_get_contents("https://github.com/users/".$_SESSION['ghid']."/contributions_calendar_data"));
  $LastyearSameday = $contributions[0];
  $LastyearNextday = $contributions[1];
- $LastyearRandomday = $contributions[16];
+ $LastyearRandomday = $contributions[15];
  
  $arr2 = array();
 $value2 = array();
-$arr = array($LastyearNextday,$LastyearSameday);
+$arr = array_slice($contributions, 0, 6); ;
 if(isset($LastyearRandomday))array_push($arr, $LastyearRandomday);
  foreach ($arr as $key => $value) {
 	 $str = 'https://github.com/'.$_SESSION["ghid"].'?tab=contributions&from='.$value[0].'&_pjax=%23contribution-activity';

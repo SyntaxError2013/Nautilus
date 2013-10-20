@@ -14,6 +14,13 @@
 		<!--This div will be filled with g+ posts-->
 		<div id="google">
 		</div>
+		<h2>Github + Posts</h2>
+		<!--This div will be filled with github cards-->
+		<div id="github">
+			<img src="/images/loader.gif" id="loader">
+		</div>
 		<script src="/js/google.js"></script>
+		<script src="/js/github.js"></script>
+
 	</body>
 </html>

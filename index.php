@@ -40,27 +40,39 @@ class FbLoginHandler {
     }
 }
 
+class HomePageHandler {
+    function get(){
+        if(isset($_SESSION['token'])){
+            echo "We have a session token";
+            echo $plus->people->get('me');
+        }
+        else{
+            echo "No session token";
+        }
+    }
+}
 
 class GoogleHandler {
     function get() {
-    	global $client;
-    	$authUrl = $client->createAuthUrl();
-    	header("Location: ".$authUrl);
+            global $client;
+            $authUrl = $client->createAuthUrl();
+            header("Location: ".$authUrl);
     }
 }
 
 class GoogleCBHandler {
-	function get() {
-		global $client;
-		if (isset($_GET['code'])) {
-			$client->authenticate();
-			$_SESSION['token'] = $client->getAccessToken();
-			print_r($_SESSION);
-		}
-	}
+        function get() {
+                global $client;
+                if (isset($_GET['code'])) {
+                        $client->authenticate();
+                        $_SESSION['token'] = $client->getAccessToken();
+                        print_r($_SESSION);
+                }
+        }
 }
 
 Toro::serve(array(
+	"/" => "HomePageHandler",
     "/facebook" => "FacebookHandler",
     "/login/google" => "GoogleHandler",
     "/login/google/cb" => "GoogleCBHandler",

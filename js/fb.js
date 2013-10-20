@@ -1,6 +1,9 @@
 $(document).ready(function(){
   $.getJSON("/facebook", function(data){
-  	$('#fb').html('');
+  	console.log(data);
+  	picture_url = data.me.picture.data.url;
+  	$('#fb').html('<image src="'+picture_url+'">');
+  	data = data.posts;
   	div=''
   	for(i in data){
   	  var msg='';

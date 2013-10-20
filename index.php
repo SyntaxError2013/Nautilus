@@ -39,7 +39,8 @@ class FacebookHandler {
 class FbLoginHandler {
     function get() {
         global $facebook;
-        $loginUrl = $facebook->getLoginUrl( array('scope' => 'email,user_photos,friends_photos,read_stream','redirect_uri'=>'http://'.$_SERVER["HTTP_HOST"].'/facebook' ));
+                $loginUrl = $facebook->getLoginUrl( array('scope' => 'email,user_photos,friends_photos,read_stream,read_insights',
+                                                  'redirect_uri'=>'http://'.$_SERVER["HTTP_HOST"].'/facebook' ));
         header("Location: ".$loginUrl);
     }
 }

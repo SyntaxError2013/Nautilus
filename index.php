@@ -1,7 +1,7 @@
 <?php
 require 'Toro.php';
 require 'google-api-php-client/src/Google_Client.php';
-require 'google-api-php-client/src/contrib/Google_PlusService.php';
+require 'google-api-php-client/src/contrib/Google_Oauth2Service.php';
 require 'vendor/facebook/facebook.php';
 
 $client = new Google_Client();
@@ -10,7 +10,8 @@ $client->setClientId('930206244765.apps.googleusercontent.com');
 $client->setClientSecret('5YHs-QqrqX8kSClcSER12NT0');
 $client->setRedirectUri('http://rekishi.in/login/google/cb');
 $client->setDeveloperKey('AIzaSyAbLfaJIOSWDGGSGX3W3RG4JbOJpbWTyAA');
-$plus = new Google_PlusService($client);
+$client->setScopes(array('https://www.googleapis.com/auth/userinfo.email','https://www.googleapis.com/auth/userinfo.profile'));
+$plus = new Google_Oauth2Service($client);
 
 $facebook = new Facebook(array(
   'appId'  => '275332542591675',
@@ -42,9 +43,13 @@ class FbLoginHandler {
 
 class HomePageHandler {
     function get(){
+    	global $client;
+    	global $plus;
         if(isset($_SESSION['token'])){
             echo "We have a session token";
-            echo $plus->people->get('me');
+            $client->setAccessToken($_SESSION['token']);
+            $userinfo = $plus->userinfo;
+    		print_r($userinfo->get());
         }
         else{
             echo "No session token";

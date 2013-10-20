@@ -51,7 +51,7 @@ class FbLoginHandler {
     }
 }
 
-class HomePageHandler 
+class GPlusHandler 
 {    function get(){
     	global $client, $oauth_client, $plus;
         if(isset($_SESSION['token'])){
@@ -67,6 +67,23 @@ class HomePageHandler
         else{
             echo "No session token";
         }
+    }
+    function get_xhr(){
+        global $client, $oauth_client, $plus;
+        if(isset($_SESSION['token'])){
+            $client->setAccessToken($_SESSION['token']);
+            $list = $plus->activities->listActivities('me','public', array("maxResults"=>100));
+            $arr=array();
+            foreach($list['items'] as $post){
+                $date = $post['published'];
+                if(substr($date,5,5)==date("m")."-".date("d"))
+                    array_push($arr, $post['url']);
+            }
+            echo json_encode($arr);
+        }
+        else{
+            echo json_encode("No session token");
+        }   
     }
 }
 
@@ -110,6 +127,11 @@ class TwitterHandler {
     }
 }
 
+class HomePageHandler {
+    function get(){
+        include 'views/home.php';
+    }
+}
 Toro::serve(array(
     "/" => "HomePageHandler",
     "/facebook" => "FacebookHandler",
@@ -118,5 +140,6 @@ Toro::serve(array(
     "/login/facebook" => "FbLoginHandler",
     "/login/twitter" => "TwitterLoginHandler",
     "/login/twitter/cb" => "TwitterCBHandler",
+    "/google" => "GPlusHandler",
     "/twitter" => "TwitterHandler"
 ));

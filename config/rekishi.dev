@@ -1,6 +1,6 @@
 <VirtualHost *:80>
     ServerAdmin ravi@sdslabs.co.in
-    ServerName rekishi.dev
+    ServerName rekishi.in
     #Change the below two lines
     #with the absolute path 
     #to where you have cloned merchandise

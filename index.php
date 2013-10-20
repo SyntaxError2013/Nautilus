@@ -8,7 +8,7 @@ $client = new Google_Client();
 $client->setApplicationName("Rekishi: Year One");
 $client->setClientId('930206244765.apps.googleusercontent.com');
 $client->setClientSecret('5YHs-QqrqX8kSClcSER12NT0');
-$client->setRedirectUri('http://localhost:8080/login/google/cb');
+$client->setRedirectUri('http://rekishi.in/login/google/cb');
 $client->setDeveloperKey('AIzaSyAbLfaJIOSWDGGSGX3W3RG4JbOJpbWTyAA');
 $plus = new Google_PlusService($client);
 

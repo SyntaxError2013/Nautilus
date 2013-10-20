@@ -40,6 +40,9 @@ class FacebookHandler {
         require 'lib/facebook.php';
         }
     }
+    function get_xhr(){
+        require 'lib/facebook.php';
+    }
 }
 
 class FbLoginHandler {

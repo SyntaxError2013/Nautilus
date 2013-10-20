@@ -15,8 +15,5 @@
 		<div id="google">
 		</div>
 		<script src="/js/google.js"></script>
-		<footer>
-			We &lt;3 Open Source.
-		</footer>
 	</body>
 </html>

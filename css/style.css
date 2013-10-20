@@ -79,3 +79,7 @@ footer{
 .fbImg {
 	float: left;
 }
+
+.loader {
+	text-align: center;
+}

@@ -13,17 +13,6 @@
 	</head>
 	<body>
 		<h1><a href="/">Rekishi</a> - Travel in Time</h1>
-		<h2>Google+ Posts</h2>
-		<!--This div will be filled with g+ posts-->
-		<div id="google">
-			<img src="/images/loader.gif">
-		</div>
-		<h2>Github Activity</h2>
-		<!--This div will be filled with github cards-->
-		<div id="github">
-			<img src="/images/loader.gif" id="loader">
-		</div>
-
 		<h2>Facebook Posts</h2>
 		<div class="chart">
 			<div class="fbImg"></div>
@@ -42,9 +31,21 @@
 				<div class="label postsval">Posts</div>
 			</div>
 		</div>
-		<div id="fb">
+		<div id="fbloader" class="loader">
 			<img src="/images/loader.gif">
 		</div>
+
+		<h2>Google+ Posts</h2>
+		<!--This div will be filled with g+ posts-->
+		<div id="google" class="loader">
+			<img src="/images/loader.gif">
+		</div>
+		<h2>Github Activity</h2>
+		<!--This div will be filled with github cards-->
+		<div id="github" class="loader">
+			<img src="/images/loader.gif" id="loader">
+		</div>
+
 		<h2>Twitter Posts</h2>
 		<div id="twitter">
 		</div>

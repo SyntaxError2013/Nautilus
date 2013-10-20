@@ -1,5 +1,6 @@
 $(document).ready(function(){
 	$.getJSON("/facebook", function(data){
+		$('#fbloader').hide();
 		console.log(data);
 		picture_url = data.me.picture.data.url;
 		$('.fbImg').html('<image src="'+picture_url+'">');

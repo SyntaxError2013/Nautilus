@@ -4,6 +4,7 @@
 		<script type="text/javascript" src="https://apis.google.com/js/plusone.js">
       		{"parsetags": "explicit"}
     	</script>
+    	<script type="text/javascript" src="/vendor/underscore/underscore-min.js"></script>
     	<link href='http://fonts.googleapis.com/css?family=Pompiere' rel='stylesheet' type='text/css'>
     	<link href="/css/style.css" type="text/stylesheet" rel="stylesheet">
 		<title>Rekishi - Travel in Time</title>

@@ -91,6 +91,7 @@ class GoogleCBHandler {
         }
 }
 
+
 class TwitterLoginHandler {
     function get(){
         $twitter = new Twitter;
@@ -125,6 +126,32 @@ class LoginHandler {
 }
 
 
+
+class  GithubLoginHandler{
+    function get() {
+        if(!isset($_GET['github']))
+      echo "<form action='/login/github' method='get' ><input type='text' name='github'/><input type='submit' name='Submit'/></form>";
+      
+      else
+        {$_SESSION['ghid']=$_GET['github'];
+        header("Location: /github");}
+      }
+}
+
+class GithubHandler{
+    function get() {
+        if(!isset($_SESSION["ghid"])){
+            header("Location: /login/github");
+        }
+        else{
+            global $_SESSION;
+            require 'vendor/dom/simple_html_dom.php';
+            require 'lib/github.php';
+        }
+    }
+}
+
+
 Toro::serve(array(
     "/" => "HomePageHandler",
     "/facebook" => "FacebookHandler",
@@ -135,5 +162,7 @@ Toro::serve(array(
     "/login/twitter/cb" => "TwitterCBHandler",
     "/google" => "GPlusHandler",
     "/twitter" => "TwitterHandler",
-    "/login"=>"LoginHandler"
+    "/login"=>"LoginHandler",
+    "/login/github" => "GithubLoginHandler",
+    "/github" => "GithubHandler"
 ));

@@ -26,9 +26,6 @@
 		<div id="fb">
 			<img src="/images/loader.gif">
 		</div>
-		
-		<hr>
-
 		<h2>Twitter Posts</h2>
 		<div id="twitter">
 		</div>

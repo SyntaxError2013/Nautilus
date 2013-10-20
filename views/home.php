@@ -12,7 +12,7 @@
 		<link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
 	</head>
 	<body>
-		<h1><a href="/">Rekishi</a> - Travel in Time</h1>
+		<h1><a href="/"><img src="/images/logo.png" alt=""></a></h1>
 		<h2>Facebook Posts</h2>
 		<div class="chart">
 			<div class="fbImg"></div>

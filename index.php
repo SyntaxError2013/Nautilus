@@ -1,9 +1,15 @@
 <?php
+ini_set('display_errors',1); 
+error_reporting(E_ALL);
+
+define("ROOT", __DIR__);
+
 require 'Toro.php';
 require 'google-api-php-client/src/Google_Client.php';
 require 'google-api-php-client/src/contrib/Google_Oauth2Service.php';
 require 'google-api-php-client/src/contrib/Google_PlusService.php';
 require 'vendor/facebook/facebook.php';
+require 'twitterlib/twitter.php';
 
 $client = new Google_Client();
 $client->setApplicationName("Rekishi: Year One");
@@ -83,10 +89,34 @@ class GoogleCBHandler {
         }
 }
 
+class TwitterLoginHandler {
+    function get(){
+        $twitter = new Twitter;
+        $twitter->login();
+    }
+}
+
+class TwitterCBHandler {
+    function get(){
+        $twitter = new Twitter;
+        $twitter->callback();
+    }
+}
+
+class TwitterHandler {
+    function get(){
+        $twitter = new Twitter;
+        $twitter->tweets();
+    }
+}
+
 Toro::serve(array(
-	"/" => "HomePageHandler",
+    "/" => "HomePageHandler",
     "/facebook" => "FacebookHandler",
     "/login/google" => "GoogleHandler",
     "/login/google/cb" => "GoogleCBHandler",
-    "/login/facebook" => "FbLoginHandler"
+    "/login/facebook" => "FbLoginHandler",
+    "/login/twitter" => "TwitterLoginHandler",
+    "/login/twitter/cb" => "TwitterCBHandler",
+    "/twitter" => "TwitterHandler"
 ));

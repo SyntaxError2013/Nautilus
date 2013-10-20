@@ -10,7 +10,7 @@
 		<title>Rekishi - Travel in Time</title>
 	</head>
 	<body>
-		<h1>Rekishi - Travel in Time</h1>
+		<h1><a href="/">Rekishi</a> - Travel in Time</h1>
 		<h2>Google+ Posts</h2>
 		<!--This div will be filled with g+ posts-->
 		<div id="google">

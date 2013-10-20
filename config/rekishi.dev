@@ -1,0 +1,35 @@
+<VirtualHost *:80>
+    ServerAdmin ravi@sdslabs.co.in
+    ServerName rekishi.dev
+    #Change the below two lines
+    #with the absolute path 
+    #to where you have cloned merchandise
+    DocumentRoot /var/www/rekishi/
+    <Directory /var/www/rekishi/>
+        #Do not show indexes
+        #Do not follow symlinks
+        Options -Indexes -MultiViews
+        Order allow,deny
+        allow from all
+        <IfModule mod_rewrite.c>
+            Options +FollowSymlinks
+            RewriteEngine on
+
+         RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond $1 !^(index\.php)
+RewriteRule ^(.*)$ /index.php/$1 [L]
+        </IfModule>
+
+    </Directory>
+
+    ErrorLog ${APACHE_LOG_DIR}/rekishi.dev.error.log
+
+    # Possible values include: debug, info, notice, warn, error, crit,
+    # alert, emerg.
+    LogLevel warn
+
+    CustomLog ${APACHE_LOG_DIR}/rekishi.dev.access.log combined
+
+</VirtualHost>
+

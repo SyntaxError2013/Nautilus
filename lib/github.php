@@ -3,7 +3,7 @@
  $contributions = json_decode(file_get_contents("https://github.com/users/".$_SESSION['ghid']."/contributions_calendar_data"));
  $LastyearSameday = $contributions[0];
  $LastyearNextday = $contributions[1];
- $LastyearRandomday = $contributions[2];
+ $LastyearRandomday = $contributions[16];
  
  $arr2 = array();
 $value2 = array();
@@ -17,6 +17,13 @@ if(isset($LastyearRandomday))array_push($arr, $LastyearRandomday);
 	  $commit = $commit->find('a', 0);
  	  $value2["link"] = "https://github.com".$commit->href;
  	  $value2["text"] = $commit->plaintext;
+
+ 	  $username = substr( $commit->href, strpos($commit->href, '/') +1 , strpos(substr( $commit->href, strpos($commit->href, '/') +1 ) , '/') );
+ 	  $nousername = substr($commit->href,strlen($username)+2);
+ 	  $repo = substr( $nousername, 0 , strpos($nousername , '/') );
+ 	  $value2["repo"] = $repo;
+ 	  $value2["username"] = $username;
+
 	}
  	$value2["date"] = $value[0];
  	$value2["contributions"] = $value[1];

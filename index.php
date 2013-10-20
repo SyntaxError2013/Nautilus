@@ -2,6 +2,7 @@
 require 'Toro.php';
 require 'google-api-php-client/src/Google_Client.php';
 require 'google-api-php-client/src/contrib/Google_Oauth2Service.php';
+require 'google-api-php-client/src/contrib/Google_PlusService.php';
 require 'vendor/facebook/facebook.php';
 
 $client = new Google_Client();
@@ -10,8 +11,10 @@ $client->setClientId('930206244765.apps.googleusercontent.com');
 $client->setClientSecret('5YHs-QqrqX8kSClcSER12NT0');
 $client->setRedirectUri('http://rekishi.in/login/google/cb');
 $client->setDeveloperKey('AIzaSyAbLfaJIOSWDGGSGX3W3RG4JbOJpbWTyAA');
-$client->setScopes(array('https://www.googleapis.com/auth/userinfo.email','https://www.googleapis.com/auth/userinfo.profile'));
-$plus = new Google_Oauth2Service($client);
+$client->setScopes(array('https://www.googleapis.com/auth/userinfo.email','https://www.googleapis.com/auth/userinfo.profile',
+	'https://www.googleapis.com/auth/plus.login'));
+$oauth_client = new Google_Oauth2Service($client);
+$plus = new Google_PlusService($client);
 
 $facebook = new Facebook(array(
   'appId'  => '275332542591675',
@@ -43,13 +46,11 @@ class FbLoginHandler {
 
 class HomePageHandler {
     function get(){
-    	global $client;
-    	global $plus;
+    	global $client, $oauth_client, $plus;
         if(isset($_SESSION['token'])){
-            echo "We have a session token";
             $client->setAccessToken($_SESSION['token']);
-            $userinfo = $plus->userinfo;
-    		print_r($userinfo->get());
+            $list = $plus->activities->listActivities('me','public', array("maxResults"=>100));
+            print_r($list);
         }
         else{
             echo "No session token";
@@ -71,7 +72,7 @@ class GoogleCBHandler {
                 if (isset($_GET['code'])) {
                         $client->authenticate();
                         $_SESSION['token'] = $client->getAccessToken();
-                        print_r($_SESSION);
+                        header("Location: /");
                 }
         }
 }

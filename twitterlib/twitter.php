@@ -126,7 +126,10 @@ class Twitter{
 			// print_r($content);
 			$content = array();
 
-			$req_date = date('Y-m-d', strtotime('Mar 24 2010'));
+			$start_date = time();
+			$end_date = time() + (7 * 24 * 60 * 60);
+			$start_date = str_replace("2013", "2012", date( 'Y-m-d', $start_date));
+			$end_date = str_replace("2013", "2012", date( 'Y-m-d', $end_date));
 
 			$found = 0;
 
@@ -147,17 +150,17 @@ class Twitter{
 				
 				$last = $data[count((array)$data)-1];
 				$last_date = date( 'Y-m-d', strtotime($last->created_at));
-				if($req_date < $last_date){
+				if($end_date < $last_date){
 					$id = $last->id + 1;
 					continue;
 				}
 				else {
 					foreach($data as $tweet){
 						$date = date( 'Y-m-d', strtotime($tweet->created_at));
-						if($date == $req_date){
+						if($date >= $start_date && $date < $end_date){
 							array_push($content, $tweet);
 						}
-						else if($date < $req_date){
+						else if($date < $start_date){
 							$found = 1;
 							break;
 						}
@@ -166,10 +169,15 @@ class Twitter{
 				}
 			}
 
-			include(ROOT.'/views/html.inc');
+			// include(ROOT.'/views/html.inc');
 
 			if($connection->http_code == 200){
-				include(ROOT.'/views/html.inc');
+				if($direct == "1"){
+					return $content;
+				}
+				else {
+					include(ROOT.'/views/html.inc');
+				}
 			}
 			else {
 				echo json_encode($content->errors);

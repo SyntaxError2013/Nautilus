@@ -3,7 +3,7 @@
  $contributions = json_decode(file_get_contents("https://github.com/users/".$_SESSION['ghid']."/contributions_calendar_data"));
  $LastyearSameday = $contributions[0];
  $LastyearNextday = $contributions[1];
- //$LastyearRandomday = $contributions[16];
+ $LastyearRandomday = $contributions[2];
  
  $arr2 = array();
 $value2 = array();
@@ -12,9 +12,9 @@ if(isset($LastyearRandomday))array_push($arr, $LastyearRandomday);
  foreach ($arr as $key => $value) {
 	 $str = 'https://github.com/'.$_SESSION["ghid"].'?tab=contributions&from='.$value[0].'&_pjax=%23contribution-activity';
 	 $html = file_get_html($str);
- 	$commit = $html->find('div[id=issues-contributed]')[0];
+ 	$commit = $html->find('div[id=issues-contributed]', 0);
  	if($commit){
-	  $commit = $commit->find('a')[0];
+	  $commit = $commit->find('a', 0);
  	  $value2["link"] = "https://github.com".$commit->href;
  	  $value2["text"] = $commit->plaintext;
 	}

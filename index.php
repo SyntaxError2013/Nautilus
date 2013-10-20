@@ -117,6 +117,14 @@ class HomePageHandler {
         include 'views/home.php';
     }
 }
+
+class LoginHandler {
+    function get(){
+        include 'views/login.html';
+    }
+}
+
+
 Toro::serve(array(
     "/" => "HomePageHandler",
     "/facebook" => "FacebookHandler",
@@ -126,5 +134,6 @@ Toro::serve(array(
     "/login/twitter" => "TwitterLoginHandler",
     "/login/twitter/cb" => "TwitterCBHandler",
     "/google" => "GPlusHandler",
-    "/twitter" => "TwitterHandler"
+    "/twitter" => "TwitterHandler",
+    "/login"=>"LoginHandler"
 ));

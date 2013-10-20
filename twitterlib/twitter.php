@@ -104,7 +104,7 @@ class Twitter{
 		}
 	}
 
-	function tweets(){
+	function tweets($direct){
 		/**
 		 * @file
 		 * User has successfully authenticated with Twitter. Access tokens saved to session and DB.
@@ -139,10 +139,10 @@ class Twitter{
 				if($i == 6) break;
 
 				if($i == 0){
-					$data = $connection->get('statuses/user_timeline', array('count' => '200', 'trim_user' => '1'));
+					$data = $connection->get('statuses/user_timeline', array('count' => '200'));
 				}
 				else {
-					$data = $connection->get('statuses/user_timeline', array('count' => '200', 'max_id' => $id, 'trim_user' => '1'));
+					$data = $connection->get('statuses/user_timeline', array('count' => '200', 'max_id' => $id));
 				}
 				$i++;
 
@@ -172,7 +172,7 @@ class Twitter{
 			// include(ROOT.'/views/html.inc');
 
 			if($connection->http_code == 200){
-				if($direct == "1"){
+				if($direct == "json"){
 					return $content;
 				}
 				else {
@@ -183,16 +183,22 @@ class Twitter{
 				echo json_encode($content->errors);
 				// include(ROOT.'/views/html.inc');
 			}
-
-			/* Some example calls */
-			//$connection->get('users/show', array('screen_name' => 'abraham'));
-			//$connection->post('statuses/update', array('status' => date(DATE_RFC822)));
-			//$connection->post('statuses/destroy', array('id' => 5437877770));
-			//$connection->post('friendships/create', array('id' => 9436992));
-			//$connection->post('friendships/destroy', array('id' => 9436992));
-
-			/* Include HTML to display on the page */
 		}
+	}
+
+	public function tweets_json(){
+		$content = $this->tweets('json');
+		$data = array();
+
+		// foreach($content as $tweet){
+			$temp['id'] = $content[0]->id;
+			$temp['text'] = $content[0]->text;
+			$temp['name'] = $content[0]->user->name;
+			$temp['screen_name'] = $content[0]->user->screen_name;
+			array_push($data, $temp);
+		// }
+
+		echo json_encode($data);
 	}
 }
 

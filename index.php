@@ -104,7 +104,13 @@ class TwitterCBHandler {
 class TwitterHandler {
     function get(){
         $twitter = new Twitter;
-        $twitter->tweets();
+        // $twitter->tweets("json");
+        $twitter->tweets_json();
+    }
+
+    function get_xhr(){
+        $twitter = new Twitter;
+        $twitter->tweets_json();        
     }
 }
 

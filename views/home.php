@@ -11,10 +11,7 @@
 		<title>Rekishi - Travel in Time</title>
 	</head>
 	<body>
-<<<<<<< HEAD
 		<h1><a href="/">Rekishi</a> - Travel in Time</h1>
-=======
->>>>>>> Added view for twitter
 		<h2>Google+ Posts</h2>
 		<!--This div will be filled with g+ posts-->
 		<div id="google">

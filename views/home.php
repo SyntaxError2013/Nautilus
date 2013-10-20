@@ -10,17 +10,22 @@
 	</head>
 	<body>
 		<h1>Rekishi - Travel in Time</h1>
-		<h2>Google + Posts</h2>
+		<h2>Google+ Posts</h2>
 		<!--This div will be filled with g+ posts-->
 		<div id="google">
+			<img src="/images/loader.gif" id="loader">
 		</div>
-		<h2>Github + Posts</h2>
+		<h2>Github Activity</h2>
 		<!--This div will be filled with github cards-->
 		<div id="github">
 			<img src="/images/loader.gif" id="loader">
 		</div>
+		<h2>Facebook Posts</h2>
+		<div id="fb">
+			<img src="/images/loader.gif" id="loader">
+		</div>
 		<script src="/js/google.js"></script>
 		<script src="/js/github.js"></script>
-
+		<script src="/js/fb.js"></script>
 	</body>
 </html>

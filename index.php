@@ -30,17 +30,9 @@ $user = $facebook->getUser();
 
 
 class FacebookHandler {
-    function get() {
+    function get_xhr(){
         global $user;
         global $facebook;
-        if(!$user){
-            header("Location: /login/facebook");
-        }
-        else{
-        require 'lib/facebook.php';
-        }
-    }
-    function get_xhr(){
         require 'lib/facebook.php';
     }
 }

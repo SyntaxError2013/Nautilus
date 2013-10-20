@@ -26,7 +26,7 @@ $(document).ready(function(){
 				}
 				else if(data[i].permalink){
 					if(msg != "")
-						var div = div+"<div class='fbpost'>"+msg+"<a class='fblink' href = '"+data[i].permalink+"'>Link</a></div>";
+						var div = div+"<div class='fbpost'>"+msg+"<a class='fblink' href = '"+data[i].permalink+"'><img src='/images/link.png' class='linkicon'></a></div>";
 				}
 				else if(msg != "")	
 					var div = div+"<div class='fbpost'>"+msg+"</div>";
@@ -35,7 +35,7 @@ $(document).ready(function(){
 				msg = data[i].message;	
 				if(data[i].permalink)
 					if(msg != "")	
-						var div = div+"<div class='fbpost'>"+msg+"<a class='fblink' href = '"+data[i].permalink+"'></a></div>";
+						var div = div+"<div class='fbpost'>"+msg+"<a class='fblink' href = '"+data[i].permalink+"'><img src='/images/link.png' class='linkicon'></a></div>";
 				else{
 					if(msg != "")	
 						var div = div+"<div class='fbpost'>"+msg+"</div>";

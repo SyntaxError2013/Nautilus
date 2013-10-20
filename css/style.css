@@ -72,14 +72,16 @@ footer{
 	background: #f7f7f7;
 }
 
-.fblink {
-	float: right;
-}
-
 .fbImg {
 	float: left;
 }
 
 .loader {
 	text-align: center;
+}
+
+.linkicon {
+	width: 16px;
+	height: 16px;
+	padding-left: 10px;
 }

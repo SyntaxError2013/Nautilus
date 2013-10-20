@@ -31,8 +31,10 @@
 				<div class="label postsval">Posts</div>
 			</div>
 		</div>
-		<div id="fbloader" class="loader">
-			<img src="/images/loader.gif">
+		<div id="fb">
+			<div class="loader">
+				<img id="fbloader" src="/images/loader.gif">
+			</div>
 		</div>
 
 		<h2>Google+ Posts</h2>
